@@ -1,0 +1,30 @@
+{% extends 'navbar.html' %}
+{% load static %}
+{% block content %}
+
+{% for i in posts %}
+    <div class="card" style="width: 18rem;">
+        {% if i.image %}
+            <img src="/media/{{ i.image }}" class="card-img-top" alt="...">
+        {% else %}
+            <img src="{% static 'not_found_jpg' %}" class="card-img-top" alt="...">
+        {% endif %}
+        <div class="card-body">
+            <h5 class="card-title">{{ i.title }}</h5> 
+            <p class="card-text">{{ i.content }}</p>
+            <p class="card-text">Rate: {{ i.rate }}</p>
+            <p class="card-text">Category: {{ i.category }}</p>
+            {% for tag in i.tags.all %}
+                <span class="badge bg-secondary">{{ tag.name }}</span>
+            {% endfor %}
+            
+            <a href="/posts/{{ i.id }}" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div>
+{% endfor %}
+
+{% endblock %}
+
+
+
+<a href="/posts/{{ i.id }}" class="btn btn-primary"> Go somewhere </a>
