@@ -20,4 +20,20 @@
                 <span class="badge bg-secondary">{{ tag.name }}</span>
             {% endfor %}
 
+
+
+<h2>Comments:</h2>
+{% for comment in post.comments.all %}
+    <p>{{ comment.text }}</p>
+    <p>{{ comment.created_at}}</p>
+{% endfor %}
+
+    <form action=""  method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" name="Create" value="Создать коммент">
+        </form>
+
+
+
 {% endblock %}
