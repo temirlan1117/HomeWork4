@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Post(models.Model):
     image = models.ImageField(upload_to = 'posts/', null=True, blank=True)
@@ -11,6 +12,7 @@ class Post(models.Model):
                                  null=True, blank=True)
     tags = models.ManyToManyField('Tag'
                                   , related_name='posts', blank=True, )
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts', null=True)
 
     def __str__(self):
         return self.title

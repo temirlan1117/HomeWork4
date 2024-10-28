@@ -6,9 +6,11 @@ html_response,
 post_list,
 post_detail_view,
 post_create_view,
-comment_create_view
+comment_create_view,
+post_update_view
+
 )
-from users.views import register_view, login_view, logout_view
+from users.views import register_view, login_view, logout_view, profile_view
 
 
 
@@ -23,6 +25,8 @@ urlpatterns = [
     path("register/", register_view),
     path("login/", login_view),
     path("logout/", logout_view),
+    path('profile/', profile_view),
+    path('posts/<int:post_id>/update/', post_update_view)
 
 
 ]

@@ -1,4 +1,5 @@
 from django.contrib import admin
+from webbrowser import register
 
 import posts
 from .models import Post, Tag,category,Comment

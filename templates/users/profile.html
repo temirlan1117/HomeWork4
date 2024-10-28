@@ -1,0 +1,32 @@
+{% extends 'navbar.html' %}
+{%load static%}
+{% block content %}
+<h1 class="title" id="site-title">Profile</h1>
+<div class="content-section">
+    <div class="media" style="display: flex; justify-content: center">
+        <img style="height: 300px" class="rounded-circle account-img" src="{{ user.profile.image.url }}">
+        <div class="media-body">
+            <h2 class="account-heading">{{user.username}}</h2>
+            <p class="text-secondary">{{user.email}}</p>
+            <h3 class="text-secondary">{{user.profile.age}}</h3>
+                {%for post in posts%}
+<div class="card" style="width: 18rem;">
+  {%  if post.image%}
+  <img src="{{post.image.url}}" class="card-img-top" alt="...">
+    {%else%}
+      <img src="/placeholder.jpg">
+    {%endif%}
+  <div class="card-body">
+    <h5 class="card-title">{{post.title}}</h5>
+    <p class="card-text">{{post.content}}</p>
+      <p class="card-text">{{post.rate}}</p>
+      <p class="card-text">{{post.created_at}}</p>
+      <p class="card-text">{{post.updated_at}}</p>
+    <a href="/posts/{{post.id}}/" class="btn btn-primary">Go to post</a>
+  </div>
+</div>
+    {%endfor%}
+        </div>
+    </div>
+</div>
+{%endblock%}

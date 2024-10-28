@@ -75,3 +75,14 @@ def comment_create_view(request, post_id):
         form = CommentForm()
     return render(request, 'posts/post_detail.html', {'post': post, 'form': form})
 
+def post_update_view(request, post_id):
+    post = Post.objects.get(id=post_id)
+    if request.method == 'GET':
+        form = PostForm2(instance=post)
+        return render(request, 'posts/post_update.html', context={'form': form})
+    if request.method == 'POST':
+        form = PostForm2(request.POST, request.FILES, instance=post)
+        if not form.is_valid():
+            return render(request, 'posts/post_update.html', {'form': form})
+        form.save()
+        return redirect('/profile/')
