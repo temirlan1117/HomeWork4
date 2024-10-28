@@ -17,7 +17,7 @@ def register_view(request):
             return render(request,"users/register.html", context={"form":form})
         form.cleaned_data.pop('password_confirm')
         User.objects.create_user(**form.cleaned_data)
-        return redirect("/")
+        return redirect("/posts/")
 
 
 
@@ -36,9 +36,9 @@ def login_view(request):
             form.add_error(None, "Username or password is incorrect")
             return render(request,"users/login.html", context={"form":form})
         login(request, user)
-        return redirect("/")
+        return redirect("/posts/")
 @login_required(login_url="/login/")
 def logout_view(request):
     if request.method == 'GET':
         logout(request)
-        return redirect("/")
+        return redirect("/posts/")
